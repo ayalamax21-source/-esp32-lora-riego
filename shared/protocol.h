@@ -1,0 +1,1 @@
+Agregar protocolo compartido entre Maestro y Nodo
