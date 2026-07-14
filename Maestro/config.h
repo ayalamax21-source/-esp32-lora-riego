@@ -16,7 +16,7 @@
 
 //------------ LoRa ----------------
 
-#define LORA_FREQUENCY 915E6      // 915 MHz
+#define LORA_FREQUENCY 433E6
 
 //#define LORA_FREQUENCY 433E6     // Descomentar si usas 433 MHz
 
