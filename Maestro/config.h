@@ -20,9 +20,7 @@
 
 //#define LORA_FREQUENCY 433E6     // Descomentar si usas 433 MHz
 
-// Pines ESP32 -> LoRa SX1276/SX1278
-
-#define LORA_SCK   18
+// Pines ESP32 -> LoRa SX1276/#define LORA_SCK   18
 
 #define LORA_MISO  19
 
@@ -33,6 +31,8 @@
 #define LORA_RST   14
 
 #define LORA_DIO0  26
+
+
 
 //------------ Sistema ----------------
 
