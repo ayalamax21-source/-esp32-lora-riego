@@ -2,6 +2,10 @@
 
 #include "config.h"
 
+#include "lora_manager.h"
+
+LoRaManager loraManager;
+
 void setup() {
 
   Serial.begin(115200);
@@ -20,11 +24,19 @@ void setup() {
 
   Serial.println("====================================");
 
+  if (!loraManager.begin()) {
+
+    Serial.println("Error al iniciar LoRa");
+
+  } else {
+
+    Serial.println("LoRa iniciado correctamente");
+
+  }
+
   // Aquí posteriormente iniciaremos:
 
   // WiFi
-
-  // LoRa
 
   // Servidor Web
 
@@ -34,9 +46,9 @@ void setup() {
 
 void loop() {
 
-  // Aquí se ejecutarán continuamente:
+  loraManager.loop();
 
-  // Comunicación LoRa
+  // Aquí se ejecutarán continuamente:
 
   // Servidor Web
 
@@ -47,3 +59,4 @@ void loop() {
   // Sensores
 
 }
+  
