@@ -62,6 +62,10 @@ void LoRaManager::receiveMessage()
 
 {
 
-    // Aquí leeremos los paquetes LoRa
+    // Aquí recibiremos y procesaremos los mensajes LoRa
+
+    // En la siguiente etapa agregaremos la librería LoRa
+
+    // y el código para interpretar los paquetes.
 
 }
