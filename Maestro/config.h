@@ -22,11 +22,13 @@
 
 // Pines ESP32 -> LoRa SX1276/#define LORA_SCK   18
 
+#define LORA_SCK    5
+
 #define LORA_MISO  19
 
-#define LORA_MOSI  23
+#define LORA_MOSI  27
 
-#define LORA_SS     5
+#define LORA_SS    18
 
 #define LORA_RST   14
 
