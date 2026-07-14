@@ -3,7 +3,7 @@
 #define LORA_MANAGER_H
 
 #include <Arduino.h>
-
+#include "protocol.h"
 class LoRaManager
 
 {
