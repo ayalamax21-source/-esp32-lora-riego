@@ -1,85 +1,93 @@
+#include <Arduino.h>
+
+#include "config.h"
+
+#include "lora_manager.h"
+
 #include "node_manager.h"
 
-void NodeManager::begin()
+LoRaManager loraManager;
+
+NodeManager nodeManager;
+
+unsigned long lastStatusPrint = 0;
+
+void setup()
 
 {
 
-    for (int i = 0; i < MAX_NODES; i++)
+    Serial.begin(115200);
+
+    Serial.println();
+
+    Serial.println("====================================");
+
+    Serial.println(PROJECT_NAME);
+
+    Serial.print("Version: ");
+
+    Serial.println(VERSION);
+
+    Serial.println("Inicializando sistema...");
+
+    Serial.println("====================================");
+
+    nodeManager.begin();
+
+    Serial.println("Administrador de nodos iniciado");
+
+    if (!loraManager.begin())
 
     {
 
-        nodes[i].id = i + 1;
-
-        nodes[i].online = false;
-
-        nodes[i].valves = 0;
-
-        nodes[i].rssi = 0;
-
-        nodes[i].lastSeen = 0;
+        Serial.println("Error al iniciar LoRa");
 
     }
 
-}
-
-void NodeManager::updateNode(uint8_t id, int rssi)
-
-{
-
-    if (id == 0 || id > MAX_NODES)
-
-        return;
-
-    nodes[id - 1].online = true;
-
-    nodes[id - 1].rssi = rssi;
-
-    nodes[id - 1].lastSeen = millis();
-
-}
-
-bool NodeManager::isOnline(uint8_t id)
-
-{
-
-    if (id == 0 || id > MAX_NODES)
-
-        return false;
-
-    return nodes[id - 1].online;
-
-}
-
-void NodeManager::printStatus()
-
-{
-
-    Serial.println("===== Estado de Nodos =====");
-
-    for (int i = 0; i < MAX_NODES; i++)
+    else
 
     {
 
-        if (nodes[i].online)
-
-        {
-
-            Serial.print("Nodo ");
-
-            Serial.print(nodes[i].id);
-
-            Serial.print(" | RSSI: ");
-
-            Serial.print(nodes[i].rssi);
-
-            Serial.print(" | Último contacto: ");
-
-            Serial.print(nodes[i].lastSeen);
-
-            Serial.println(" ms");
-
-        }
+        Serial.println("LoRa iniciado correctamente");
 
     }
+
+    // Aquí posteriormente iniciaremos:
+
+    // WiFi
+
+    // Servidor Web
+
+    // Programador de riego
+
+}
+
+void loop()
+
+{
+
+    loraManager.loop();
+
+    // Mostrar estado de los nodos cada 10 segundos
+
+    if (millis() - lastStatusPrint >= 10000)
+
+    {
+
+        lastStatusPrint = millis();
+
+        nodeManager.printStatus();
+
+    }
+
+    // Aquí se ejecutarán continuamente:
+
+    // Servidor Web
+
+    // Monitoreo de nodos
+
+    // Programación de riego
+
+    // Sensores
 
 }
